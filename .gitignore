@@ -5,5 +5,5 @@ venv/
 *.pkl
 *.h5
 *.joblib
-*.json
+modelo_xgb.json
 __pycache__/
