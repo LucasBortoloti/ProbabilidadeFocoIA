@@ -1,25 +1,25 @@
-**Para rodar essa aplicação:**
+## Para rodar essa aplicação:
 
 Primeiramente colocar os arquivos CSVS (clima.csv, foco.csv) q estão no meu drive dentro da pasta (data)
 
-**Criar ambiente virtual**
+## Criar ambiente virtual
 
 python3 -m venv venv
 source venv/bin/activate  # Ativa o ambiente virtual
 
-**Instalar bibliotecas**
+## Instalar bibliotecas
 
 pip install fastapi uvicorn pandas numpy scikit-learn xgboost joblib
 
-**Para treinar e gerar o arquivo (modelo_xgb.json) a partir dos CSVS**
+## Para treinar e gerar o arquivo (modelo_xgb.json) a partir dos CSVS
 
 python -m app.train_model
 
-**Rodar API**
+## Rodar API
 
 uvicorn app.api:app --reload
 
-**Para ver a probabilidade de foco:**
+## Para ver a probabilidade de foco:
 
 ter o Insomnia instalado
 
@@ -40,6 +40,6 @@ assim retornará:
 	"probabilidade": 43.599999999999994
 }
 
-**Mas óbvio que os valores podem ser mudados para testar diferentes cenários.**
+## Mas óbvio que os valores podem ser mudados para testar diferentes cenários.
 
 :D
