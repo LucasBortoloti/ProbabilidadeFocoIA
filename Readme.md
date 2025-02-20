@@ -15,6 +15,8 @@ pip install fastapi uvicorn pandas numpy scikit-learn xgboost joblib
 
 python -m app.train_model
 
+caso ele já esteja criado vai estar na pasta (models)
+
 ## Rodar API
 
 uvicorn app.api:app --reload
