@@ -1,18 +1,27 @@
 import joblib
 import numpy as np
+import pandas as pd
 
 # Carregar o modelo treinado
-modelo = joblib.load("models/modelo_xgb.json")
+modelo = joblib.load("models/modelo_rf.pkl")
 
-# Função de previsão
-def prever_foco(temperatura, umidade, precipitacao):
-    print(f"Temperatura: {temperatura}, Umidade: {umidade}, Precipitação: {precipitacao}")
-    
-    # Simulação de um modelo de previsão para exemplo
-    # Suponha que o modelo deve retornar uma previsão com base nos dados
-    previsao = temperatura * 0.5 + umidade * 0.3 + precipitacao * 0.2
-    probabilidade = 1 / (1 + np.exp(-previsao))  # Exemplo de função logística para probabilidade
-    
-    print(f"Previsão calculada: {previsao}, Probabilidade calculada: {probabilidade}")
-    
-    return previsao, probabilidade
+def prever_foco(temperatura_c, umidade, precipitacao_mm):
+    # Criar o DataFrame com os dados de entrada
+    dados_entrada = pd.DataFrame({
+        "temperatura_c": [temperatura_c],
+        "umidade": [umidade],
+        "precipitacao_mm": [precipitacao_mm]
+    })
+
+    # Realizar a previsão de foco (classe) e probabilidade
+    previsao = modelo.predict(dados_entrada)
+    probabilidade = modelo.predict_proba(dados_entrada)
+
+    # A previsão é o foco_id
+    foco_predito = int(previsao[0])
+
+    # A probabilidade é a probabilidade da classe prevista
+    probabilidade_foco = probabilidade[0][modelo.classes_.tolist().index(foco_predito)]
+
+    return foco_predito, probabilidade_foco
+

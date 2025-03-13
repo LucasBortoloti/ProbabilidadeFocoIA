@@ -1,20 +1,25 @@
+from sqlalchemy import create_engine
 import pandas as pd
 
+# Configuração da conexão com o banco
+DB_USER = ""
+DB_PASSWORD = ""
+DB_HOST = ""  # Ou IP do servidor
+DB_NAME = ""
+
+# Criar engine de conexão
+engine = create_engine(f"mysql+pymysql://(DB_USER):(DB_PASSWORD)@(DB_HOST)/(DB_NAME)") # remover os parenteses quando arrumar as informação corretas
+
 def carregar_dados():
-    # Carregar os dados climáticos
-    clima = pd.read_csv("data/clima.csv")
+    # Query para buscar os dados da view
+    query = """
+    SELECT foco_id, temperatura_c, umidade, precipitacao_mm
+    FROM foco_clima_view
+    WHERE YEAR(amostra_created_at) = 2025
+    """
 
-    # Carregar os dados de focos de dengue
-    focos = pd.read_csv("data/foco.csv")
-
-    # Renomeando as colunas de data nos dois DataFrames
-    focos.rename(columns={'data_hora': 'data'}, inplace=True)  # 'data_hora' para 'data'
-    clima.rename(columns={'data_registro': 'data'}, inplace=True)  # 'data_registro' para 'data'
-
-    # Unir as duas bases de dados
-    dados = pd.merge(focos, clima, on='data', how='left')
-
-    print(dados.columns)
+    # Ler os dados direto do banco de dados
+    dados = pd.read_sql(query, engine)
 
     # Tratar valores ausentes
     dados.fillna(0, inplace=True)

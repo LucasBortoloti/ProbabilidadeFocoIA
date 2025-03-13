@@ -1,6 +1,6 @@
 ## Para rodar essa aplicação:
 
-Primeiramente colocar os arquivos CSVS (clima.csv, foco.csv) q estão no meu drive dentro da pasta (data)
+Não necessita mais dos CSVS pq puxa direto do banco
 
 ## Criar ambiente virtual
 
@@ -9,9 +9,9 @@ source venv/bin/activate  # Ativa o ambiente virtual
 
 ## Instalar bibliotecas
 
-pip install fastapi uvicorn pandas numpy scikit-learn xgboost joblib
+pip install fastapi uvicorn pandas numpy scikit-learn xgboost joblib sqlalchemy pymysql
 
-## Para treinar e gerar o arquivo (modelo_xgb.json) a partir dos CSVS
+## Para treinar e gerar o arquivo (modelo_rf.pkl) a partir dos bancos de dados
 
 python -m app.train_model
 

@@ -5,7 +5,7 @@ import pandas as pd
 from app.predict import prever_foco
 
 # Carregar o modelo treinado
-modelo = joblib.load("models/modelo_xgb.json")
+modelo = joblib.load("models/modelo_rf.pkl")  # Use o modelo correto
 
 # Inicializar o FastAPI
 app = FastAPI()
@@ -22,12 +22,12 @@ async def previsao(input_data: PrevisaoInput):
     dados_entrada = pd.DataFrame([input_data.dict()])
     
     # Fazer a previsão
-    previsao, previsao_original = prever_foco(dados_entrada['temperatura_c'][0], 
-                                              dados_entrada['umidade'][0], 
-                                              dados_entrada['precipitacao_mm'][0])
+    previsao, probabilidade = prever_foco(dados_entrada['temperatura_c'][0], 
+                                          dados_entrada['umidade'][0], 
+                                          dados_entrada['precipitacao_mm'][0])
     
-    # Converte o valor numpy.float32 para float
-    previsao = float(previsao)  # Convertendo para float
+    # Converte a probabilidade para porcentagem
+    probabilidade = probabilidade * 100
     
     # Retornar o resultado
-    return {"previsao": int(previsao_original), "probabilidade": previsao}
+    return {"previsao": previsao, "probabilidade": probabilidade}
