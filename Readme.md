@@ -11,6 +11,10 @@ source venv/bin/activate  # Ativa o ambiente virtual
 
 pip install fastapi uvicorn pandas numpy scikit-learn xgboost joblib sqlalchemy pymysql
 
+## Ajustar o arquivo process.py
+
+Ajustar as configurações do banco de dados
+
 ## Para treinar e gerar o arquivo (modelo_rf.pkl) a partir dos bancos de dados
 
 python -m app.train_model

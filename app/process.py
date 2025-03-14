@@ -15,7 +15,6 @@ def carregar_dados():
     query = """
     SELECT foco_id, temperatura_c, umidade, precipitacao_mm
     FROM foco_clima_view
-    WHERE YEAR(amostra_created_at) = 2025
     """
 
     # Ler os dados direto do banco de dados
