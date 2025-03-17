@@ -5,6 +5,7 @@ Não necessita mais dos CSVS pq puxa direto do banco
 ## Criar ambiente virtual
 
 python3 -m venv venv
+
 source venv/bin/activate  # Ativa o ambiente virtual
 
 ## Instalar bibliotecas
