@@ -10,7 +10,7 @@ source venv/bin/activate  # Ativa o ambiente virtual
 
 ## Instalar bibliotecas
 
-pip install fastapi uvicorn pandas numpy scikit-learn xgboost joblib sqlalchemy pymysql
+pip install fastapi uvicorn pandas numpy scikit-learn xgboost joblib sqlalchemy pymysql apscheduler
 
 ## Ajustar o arquivo process.py
 
@@ -47,6 +47,20 @@ assim retornará:
 	"probabilidade": 43.599999999999994
 }
 
-## Mas óbvio que os valores podem ser mudados para testar diferentes cenários.
+Mas óbvio que os valores podem ser mudados para testar diferentes cenários.
+
+## Rodar o agendador (para re-treinar o modelo automaticamente a cada 30 minutos) usando o arquivo run_model.sh e o Cron
+
+Configure o Cron:
+
+contrab -e
+
+Adicione o seguinte comando:
+
+*/30 * * * * /home/usuario/Downloads/inteligenciaartificialexemplo/run_model.sh >> /home/usuario/Downloads/inteligenciaartificialexemplo/logs/cron.log 2>&1
+
+Verifique se o diretório está correto, pois pode variar
+
+Para conferir as logs do cron é só vizualizar o arquivo da pasta logs/cron.log
 
 :D
