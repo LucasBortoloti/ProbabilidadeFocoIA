@@ -53,7 +53,7 @@ Mas óbvio que os valores podem ser mudados para testar diferentes cenários.
 
 Configure o Cron:
 
-contrab -e
+crontab -e
 
 Adicione o seguinte comando:
 
