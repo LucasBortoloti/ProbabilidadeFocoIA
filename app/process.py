@@ -8,7 +8,7 @@ DB_HOST = ""  # Ou IP do servidor
 DB_NAME = ""
 
 # Criar engine de conexão
-engine = create_engine(f"mysql+pymysql://(DB_USER):(DB_PASSWORD)@(DB_HOST)/(DB_NAME)") # remover os parenteses quando arrumar as informação corretas
+engine = create_engine(f"mysql+pymysql://(DB_USER):(DB_PASSWORD)@(DB_HOST)/(DB_NAME)") # remover os parênteses quando arrumar as informações corretas
 
 def carregar_dados():
     # Query para buscar os dados da view
